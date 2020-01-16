@@ -15,13 +15,13 @@ bot.listen('/', process.env.PORT, () => {
 bot.on('message', event => {
   if (event.message.type === 'text') {
     const usermsg = event.message.text
-    rp('https://cloud.culture.tw/frontsite/trans/emapOpenDataAction.do?method=exportEmapJson&typeId=F').then(htmlString => {
+    rp('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json').then(htmlString => {
       let json = JSON.parse(htmlString)
       json = json.filter(j => {
         if (j.name === usermsg) return true
         else return false
       })
-      if (json.length > 0) event.reply(json[0].intro)
+      if (json.length > 0) event.reply(json[0].sbi)
       else event.reply('沒有資料')
     })
       .catch(() => {
