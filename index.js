@@ -18,7 +18,7 @@ bot.on('message', event => {
     rp('https://tcgbusfs.blob.core.windows.net/blobyoubike/YouBikeTP.json').then(htmlString => {
       let json = JSON.parse(htmlString)
       json = json.filter(j => {
-        if (j.name === usermsg) return true
+        if (j.sna === usermsg) return true
         else return false
       })
       if (json.length > 0) event.reply(json[0].sbi)
